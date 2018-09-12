@@ -343,7 +343,7 @@ namespace vcl
  * @ingroup sft
  *
  */
-    SFErrCodes CreateTTFromTTGlyphs(TrueTypeFont  *ttf,
+    VCL_DLLPUBLIC SFErrCodes CreateTTFromTTGlyphs(TrueTypeFont  *ttf,
                               const char    *fname,
                               sal_uInt16 const *glyphArray,
                               sal_uInt8 const *encoding,
@@ -386,7 +386,7 @@ namespace vcl
  * @ingroup sft
  *
  */
-    TTSimpleGlyphMetrics *GetTTSimpleGlyphMetrics(TrueTypeFont const *ttf, const sal_uInt16 *glyphArray, int nGlyphs, bool vertical);
+    VCL_DLLPUBLIC TTSimpleGlyphMetrics *GetTTSimpleGlyphMetrics(TrueTypeFont const *ttf, const sal_uInt16 *glyphArray, int nGlyphs, bool vertical);
 
 #if defined(_WIN32) || defined(MACOSX) || defined(IOS)
 /**
@@ -398,7 +398,7 @@ namespace vcl
  * @return glyph ID, if the character is missing in the font, the return value is 0.
  * @ingroup sft
  */
-    sal_uInt16 MapChar(TrueTypeFont const *ttf, sal_uInt16 ch);
+    VCL_DLLPUBLIC sal_uInt16 MapChar(TrueTypeFont const *ttf, sal_uInt16 ch);
 #endif
 
 /**
@@ -410,7 +410,7 @@ namespace vcl
  * @ingroup sft
  *
  */
-    void GetTTGlobalFontInfo(TrueTypeFont *ttf, TTGlobalFontInfo *info);
+    VCL_DLLPUBLIC void GetTTGlobalFontInfo(TrueTypeFont *ttf, TTGlobalFontInfo *info);
 
 /**
  * Returns fonts metrics.
@@ -429,7 +429,7 @@ namespace vcl
 /**
  * returns the number of glyphs in a font
  */
- int GetTTGlyphCount( TrueTypeFont const * ttf );
+ VCL_DLLPUBLIC int GetTTGlyphCount( TrueTypeFont const * ttf );
 
 /**
  * provide access to the raw data of a SFNT-container's subtable
