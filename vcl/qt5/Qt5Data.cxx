@@ -149,12 +149,22 @@
 #include <unx/x11_cursors/wsshow_curs.h>
 #include <unx/x11_cursors/wsshow_mask.h>
 
+#ifndef _WIN32
 #include <unx/glyphcache.hxx>
+#endif
 
 Qt5Data::Qt5Data(SalInstance* pInstance)
+#ifndef _WIN32
     : GenericUnixSalData(SAL_DATA_QT5, pInstance)
     , m_pGlyphCache(new GlyphCache())
+#else
+    : SalData()
+#endif
 {
+#ifdef _WIN32
+    m_pInstance = pInstance;
+    SetSalData(this);
+#endif
     ImplSVData* pSVData = ImplGetSVData();
 
     // draw toolbars on separate lines
@@ -309,9 +319,11 @@ QCursor& Qt5Data::getCursor(PointerStyle ePointerStyle)
     return *m_aCursors[ePointerStyle];
 }
 
+#ifndef _WIN32
 void Qt5Data::ErrorTrapPush() {}
 
 bool Qt5Data::ErrorTrapPop(bool /*bIgnoreError*/) { return false; }
+#endif
 
 bool Qt5Data::noNativeControls()
 {
