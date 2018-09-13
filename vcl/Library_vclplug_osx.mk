@@ -26,12 +26,9 @@ $(eval $(call gb_Library_set_include,vclplug_osx,\
     -I$(SRCDIR)/vcl/inc \
 ))
 
-
-ifeq ($(SYSTEM_GLM),TRUE)
 $(eval $(call gb_Library_add_defs,vclplug_osx,\
-    -DGLM_ENABLE_EXPERIMENTAL \
+    -DVCLPLUG_OSX_IMPLEMENTATION \
 ))
-endif
 
 $(eval $(call gb_Library_use_sdk_api,vclplug_osx))
 
@@ -76,15 +73,10 @@ $(eval $(call gb_Library_use_libraries,vclplug_osx,\
 
 $(eval $(call gb_Library_use_externals,vclplug_osx,\
     boost_headers \
-    gio \
-    glm_headers \
     graphite \
     harfbuzz \
-    icu_headers \
-    icuuc \
-    lcms2 \
-    mdds_headers \
 ))
+
 ifeq ($(DISABLE_GUI),)
 $(eval $(call gb_Library_use_externals,vclplug_osx,\
      epoxy \

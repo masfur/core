@@ -17,40 +17,4 @@
  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
  */
 
-#pragma once
-
-#include <unx/gendata.hxx>
-
-#include <o3tl/enumarray.hxx>
-#include <vcl/ptrstyle.hxx>
-#include <memory>
-#include <vclpluginapi.h>
-
-class GlyphCache;
-class QCursor;
-
-class VCLPLUG_QT5_PUBLIC Qt5Data
-#if (defined MACOSX || defined _WIN32)
-    : public SalData
-#else
-    : public GenericUnixSalData
-#endif
-{
-    o3tl::enumarray<PointerStyle, std::unique_ptr<QCursor>> m_aCursors;
-#if !(defined MACOSX || defined _WIN32)
-    std::unique_ptr<GlyphCache> m_pGlyphCache;
-#endif
-
-public:
-    explicit Qt5Data(SalInstance* pInstance);
-    virtual ~Qt5Data() override;
-#if !(defined MACOSX || defined _WIN32)
-    virtual void ErrorTrapPush() override;
-    virtual bool ErrorTrapPop(bool bIgnoreError = true) override;
-#endif
-    QCursor& getCursor(PointerStyle ePointerStyle);
-
-    static bool noNativeControls();
-};
-
-/* vim:set shiftwidth=4 softtabstop=4 expandtab: */
+#include "Qt5Printer.cxx"
